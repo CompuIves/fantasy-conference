@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "micro",
+    "start": "micro --port=8080",
     "dev": "nodemon --exec \"npm start\" -e \"js\"",
     "test": "standard"
   },

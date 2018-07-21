@@ -2,13 +2,13 @@ require('dotenv').config()
 const querystring = require('querystring')
 const axios = require('axios')
 const { send } = require('micro')
-const { router, get } = require('microrouter');
-const redirect = require('micro-redirect');
-const uid = require('uid-promise');
+const { router, get } = require('microrouter')
+const redirect = require('micro-redirect')
+const uid = require('uid-promise')
 
 const githubUrl = process.env.GH_HOST || 'github.com'
 
-const states = [];
+const states = []
 
 const redirectWithQueryString = (res, data) => {
   const location = `${process.env.REDIRECT_URL}?${querystring.stringify(data)}`
@@ -16,29 +16,34 @@ const redirectWithQueryString = (res, data) => {
 }
 
 const login = async (req, res) => {
-  const state = await uid(20);
-  states.push(state);
-  const { scopes, allow_signup } = req.query;
+  const state = await uid(20)
+  states.push(state)
+  const { scopes, allow_signup } = req.query
   const query = {
     client_id: process.env.GH_CLIENT_ID,
     state: state
-  };
-  if (scopes) query.scopes = scopes;
-  if (allow_signup !== undefined) query.allow_signup = allow_signup;
-  redirect(res, 302, `https://${githubUrl}/login/oauth/authorize?${querystring.stringify(query)}`);
-};
+  }
+  if (scopes) query.scopes = scopes
+  if (allow_signup !== undefined) query.allow_signup = allow_signup
+  redirect(
+    res,
+    302,
+    `https://${githubUrl}/login/oauth/authorize?${querystring.stringify(query)}`
+  )
+}
 
 const callback = async (req, res) => {
-
   res.setHeader('Content-Type', 'text/html')
   const { code, state } = req.query
 
   if (!code && !state) {
-    redirectWithQueryString(res, { error: 'Provide code and state query param' })
+    redirectWithQueryString(res, {
+      error: 'Provide code and state query param'
+    })
   } else if (!states.includes(state)) {
     redirectWithQueryString(res, { error: 'Unknown state' })
   } else {
-    states.splice(states.indexOf(state), 1);
+    states.splice(states.indexOf(state), 1)
     try {
       const { status, data } = await axios({
         method: 'POST',
@@ -50,7 +55,6 @@ const callback = async (req, res) => {
           code
         }
       })
-
       if (status === 200) {
         const qs = querystring.parse(data)
         if (qs.error) {
@@ -62,12 +66,12 @@ const callback = async (req, res) => {
         redirectWithQueryString(res, { error: 'GitHub server error.' })
       }
     } catch (err) {
-      redirectWithQueryString(res, { error: 'Please provide GH_CLIENT_ID and GH_CLIENT_SECRET as environment variables. (or GitHub might be down)' })
+      redirectWithQueryString(res, {
+        error:
+          'Please provide GH_CLIENT_ID and GH_CLIENT_SECRET as environment variables. (or GitHub might be down)'
+      })
     }
   }
 }
 
-module.exports = router(
-  get('/login', login),
-  get('/callback', callback)
-);
+module.exports = router(get('/login', login), get('/callback', callback))

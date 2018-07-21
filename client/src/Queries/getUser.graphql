@@ -1,0 +1,6 @@
+query userFromGithub {
+  userFromGithub @client {
+    avatar_url
+    login
+  }
+}

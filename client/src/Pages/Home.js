@@ -5,17 +5,7 @@ import Flex from "styled-flex-component"
 import { Padding } from "styled-components-spacing"
 import { GithubLoginButton } from "react-social-login-buttons"
 import Logo from "../assets/logo.svg"
-
-const showTitle = keyframes`
-    0% {
-        transform: translateY(-300%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-`
+import { Title, SubTitle } from "../Components/Typography"
 
 const showLogo = keyframes`
     0% {
@@ -45,18 +35,6 @@ const IntroductionWrapper = styled(Grid.Unit)`
   color: ${props => props.theme.white};
 `
 
-const Title = styled.h1`
-  color: ${props => props.theme.white};
-  text-align: center;
-  animation: ${showTitle} 0.6s both 0.3s ease-in;
-`
-
-const SubTitle = styled.h2`
-  color: ${props => props.theme.blueLight};
-  text-align: center;
-  animation: ${showTitle} 0.6s both 0.8s ease-in;
-`
-
 const Login = styled.h3`
   color: ${props => props.theme.blueDark};
 `
@@ -80,11 +58,11 @@ class App extends Component {
               <LogoImg src={Logo} />
             </Padding>
             <Padding horizontal={4}>
-              <Title>Fantasy Conferences</Title>
+              <Title animated>Fantasy Conferences</Title>
             </Padding>
             <Padding horizontal={4}>
-              <SubTitle>
-                It's like fantasy football but with Frontend Conferences
+              <SubTitle animated>
+                It's like fantasy footbal but with Frontend Conferences
               </SubTitle>
             </Padding>
           </Flex>
@@ -95,8 +73,13 @@ class App extends Component {
 
             <GithubLoginButton
               onClick={() =>
-                (window.location =
-                  "http://fantasy-conference-login.now.sh/login")
+                window.location.assign(
+                  `http://${
+                    process.env.NODE_ENV !== "development"
+                      ? "fantasy-conference-login.now.sh"
+                      : "localhost:8080"
+                  }/login`
+                )
               }
             />
           </Flex>

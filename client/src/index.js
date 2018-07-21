@@ -12,12 +12,14 @@ import ApolloClient from "apollo-boost"
 import { ApolloProvider } from "react-apollo"
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
 import { ThemeProvider } from "../node_modules/styled-components"
+import clientState from "./utils/state"
 
 const client = new ApolloClient({
   uri: "https://nx9zvp49q7.lp.gql.zone/graphql",
   fetchOptions: {
     credentials: "include"
   },
+  clientState,
   request: async operation => {
     const token = await localStorage.getItem("gh-token")
     operation.setContext({
@@ -43,17 +45,13 @@ class App extends Component {
 
   componentDidMount = async () => {
     const token = await localStorage.getItem("gh-token")
-    this.setState(
-      {
-        authenticated: !!token || token !== null
-      },
-      () => console.log(this.state.authenticated)
-    )
+    this.setState({
+      authenticated: !!token || token !== null
+    })
   }
 
   login = async cb => {
-    await localStorage.setItem("gh-token", getParameterByName("code"))
-    await localStorage.setItem("gh-state", getParameterByName("state"))
+    await localStorage.setItem("gh-token", getParameterByName("access_token"))
     this.setState(
       {
         authenticated: true
@@ -64,7 +62,6 @@ class App extends Component {
 
   logout = async cb => {
     await localStorage.removeItem("gh-token")
-    await localStorage.removeItem("gh-state")
     this.setState(
       {
         authenticated: false
