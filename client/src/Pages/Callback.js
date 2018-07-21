@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import Flex from 'styled-flex-component'
-import styled from 'styled-components'
+import React, { Component } from "react"
+import Flex from "styled-flex-component"
+import styled from "styled-components"
 
 const Title = styled.h1`
   color: ${props => props.theme.blueDark};
@@ -9,7 +9,7 @@ const Title = styled.h1`
 
 class Callback extends Component {
   componentDidMount = async () => {
-    this.props.login(() => this.props.history.push('/conferences'))
+    this.props.login(() => this.props.history.push("/conferences"))
   }
   render() {
     return (

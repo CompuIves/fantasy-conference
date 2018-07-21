@@ -22,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "posttest": "npm run format",
+    "eject": "react-scripts eject",
+    "format": "prettier --write '**/*.{js,css,md}'"
   },
   "browserslist": {
     "development": [

@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import React, { Fragment } from "react"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 const Nav = styled.nav`
   position: absolute;

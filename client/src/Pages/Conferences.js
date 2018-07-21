@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import Grid from 'styled-components-grid'
-import styled, { keyframes } from 'styled-components'
-import Flex from 'styled-flex-component'
-import { Padding } from 'styled-components-spacing'
+import React, { Component } from "react"
+import Grid from "styled-components-grid"
+import styled, { keyframes } from "styled-components"
+import Flex from "styled-flex-component"
+import { Padding } from "styled-components-spacing"
 
 const showTitle = keyframes`
     0% {
