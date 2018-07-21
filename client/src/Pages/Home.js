@@ -84,7 +84,7 @@ class App extends Component {
             </Padding>
             <Padding horizontal={4}>
               <SubTitle>
-                It's like fantasy footbal but with Frontend Conferences
+                It's like fantasy football but with Frontend Conferences
               </SubTitle>
             </Padding>
           </Flex>
