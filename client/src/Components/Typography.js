@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components"
-import is from "styled-is"
+import styled, { keyframes } from 'styled-components'
+import is from 'styled-is'
 
 const showTitle = keyframes`
     0% {
@@ -14,7 +14,7 @@ const showTitle = keyframes`
 export const Title = styled.h1`
   color: ${props => props.theme.white};
   text-align: center;
-  ${is("animated")`
+  ${is('animated')`
     animation: ${showTitle} 0.6s both 0.3s ease-in;
   `};
 `
@@ -22,7 +22,7 @@ export const Title = styled.h1`
 export const SubTitle = styled.h2`
   color: ${props => props.theme.blueLight};
   text-align: center;
-  ${is("animated")`
+  ${is('animated')`
     animation: ${showTitle} 0.6s both 0.8s ease-in;
   `};
 `

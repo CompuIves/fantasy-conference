@@ -1,9 +1,9 @@
-import React from "react"
+import React from 'react'
 
-export default () => (
+const Loading = () => (
   <div
-    class="fixed w-100 tc bg-white"
-    style={{ top: "50%", transform: "translateY(-50%)" }}
+    className="fixed w-100 tc bg-white"
+    style={{ top: '50%', transform: 'translateY(-50%)' }}
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -51,3 +51,5 @@ export default () => (
     </svg>
   </div>
 )
+
+export default Loading

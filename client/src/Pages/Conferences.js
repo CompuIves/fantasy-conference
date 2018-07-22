@@ -1,12 +1,12 @@
-import React, { Fragment } from "react"
-import Grid from "styled-components-grid"
-import styled from "styled-components"
-import Flex from "styled-flex-component"
-import { Padding } from "styled-components-spacing"
+import React, { Fragment } from 'react'
+import Grid from 'styled-components-grid'
+import styled from 'styled-components'
+import Flex from 'styled-flex-component'
+import { Padding } from 'styled-components-spacing'
 
-import { Title, SubTitle } from "../Components/Typography"
-import Query from "../Components/Query"
-import GET_USER from "../Queries/getUser.graphql"
+import { Title, SubTitle } from '../Components/Typography'
+import Query from '../Components/Query'
+import GET_USER from '../Queries/getUser.graphql'
 
 const Wrapper = styled(Grid)`
   min-width: 100vw;

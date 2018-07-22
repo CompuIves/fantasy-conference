@@ -1,8 +1,8 @@
-import React from "react"
-import { Query } from "react-apollo"
-import Loading from "./Loading"
+import React from 'react'
+import { Query } from 'react-apollo'
+import Loading from './Loading'
 
-export default ({ children, ...props }) => (
+const UserQuery = ({ children, ...props }) => (
   <Query {...props}>
     {({ loading, error, data }) => {
       if (loading) return <Loading />
@@ -11,3 +11,5 @@ export default ({ children, ...props }) => (
     }}
   </Query>
 )
+
+export default UserQuery

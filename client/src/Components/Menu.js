@@ -1,8 +1,8 @@
-import React, { Fragment } from "react"
-import styled from "styled-components"
-import { Link } from "react-router-dom"
-import Query from "./Query"
-import GET_USER from "../Queries/getUser.graphql"
+import React, { Fragment } from 'react'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import Query from './Query'
+import GET_USER from '../Queries/getUser.graphql'
 
 const Nav = styled.nav`
   position: absolute;
@@ -34,7 +34,7 @@ const Item = styled.li`
   }
 `
 
-export default ({ authenticated }) => (
+const Menu = ({ authenticated }) => (
   <Nav>
     {authenticated ? (
       <Fragment>
@@ -65,3 +65,5 @@ export default ({ authenticated }) => (
     )}
   </Nav>
 )
+
+export default Menu

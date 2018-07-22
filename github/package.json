@@ -6,7 +6,10 @@
   "scripts": {
     "start": "micro --port=8080",
     "dev": "nodemon --exec \"npm start\" -e \"js\"",
-    "test": "standard"
+    "pretest": "npm run format",
+    "test": "npm run lint",
+    "format": "prettier --write '**/*.{js,css,md}'",
+    "lint": "eslint . --cache --fix"
   },
   "repository": {
     "type": "git",
@@ -28,6 +31,7 @@
   },
   "devDependencies": {
     "nodemon": "^1.11.0",
+    "prettier": "^1.13.7",
     "standard": "^8.6.0"
   }
 }

@@ -1,11 +1,11 @@
-import React, { Component } from "react"
-import Grid from "styled-components-grid"
-import styled, { keyframes } from "styled-components"
-import Flex from "styled-flex-component"
-import { Padding } from "styled-components-spacing"
-import { GithubLoginButton } from "react-social-login-buttons"
-import Logo from "../assets/logo.svg"
-import { Title, SubTitle } from "../Components/Typography"
+import React, { Component } from 'react'
+import Grid from 'styled-components-grid'
+import styled, { keyframes } from 'styled-components'
+import Flex from 'styled-flex-component'
+import { Padding } from 'styled-components-spacing'
+import { GithubLoginButton } from 'react-social-login-buttons'
+import Logo from '../assets/logo.svg'
+import { Title, SubTitle } from '../Components/Typography'
 
 const showLogo = keyframes`
     0% {
@@ -49,7 +49,7 @@ const LogoImg = styled.img`
 `
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <Wrapper wrap>
         <IntroductionWrapper wrap size={0.5}>
@@ -75,9 +75,9 @@ class App extends Component {
               onClick={() =>
                 window.location.assign(
                   `http://${
-                    process.env.NODE_ENV !== "development"
-                      ? "fantasy-conference-login.now.sh"
-                      : "localhost:8080"
+                    process.env.NODE_ENV !== 'development'
+                      ? 'fantasy-conference-login.now.sh'
+                      : 'localhost:8080'
                   }/login`
                 )
               }

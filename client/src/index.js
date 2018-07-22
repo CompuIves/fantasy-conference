@@ -1,27 +1,27 @@
-import React, { Component } from "react"
-import ReactDOM from "react-dom"
-import "./index.css"
-import Home from "./Pages/Home"
-import getParameterByName from "./utils/getParams"
-import Menu from "./Components/Menu"
-import Callback from "./Pages/Callback"
-import Logout from "./Pages/Logout"
-import Conferences from "./Pages/Conferences"
-import * as serviceWorker from "./serviceWorker"
-import ApolloClient from "apollo-boost"
-import { ApolloProvider } from "react-apollo"
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom"
-import { ThemeProvider } from "../node_modules/styled-components"
-import clientState from "./utils/state"
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import Home from './Pages/Home'
+import getParameterByName from './utils/getParams'
+import Menu from './Components/Menu'
+import Callback from './Pages/Callback'
+import Logout from './Pages/Logout'
+import Conferences from './Pages/Conferences'
+import * as serviceWorker from './serviceWorker'
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { ThemeProvider } from '../node_modules/styled-components'
+import clientState from './utils/state'
 
 const client = new ApolloClient({
-  uri: "https://nx9zvp49q7.lp.gql.zone/graphql",
+  uri: 'https://nx9zvp49q7.lp.gql.zone/graphql',
   fetchOptions: {
-    credentials: "include"
+    credentials: 'include'
   },
   clientState,
   request: async operation => {
-    const token = await localStorage.getItem("gh-token")
+    const token = await localStorage.getItem('gh-token')
     operation.setContext({
       headers: {
         authorization: token
@@ -31,11 +31,11 @@ const client = new ApolloClient({
 })
 
 const theme = {
-  white: "rgba(255, 252, 253, 1)",
-  blueDark: "rgba(1, 23, 47, 1)",
-  green: "rgba(0, 99, 93, 1)",
-  blueLight: "rgba(8, 164, 189, 1)",
-  blue: "rgba(68, 109, 246, 1)"
+  white: 'rgba(255, 252, 253, 1)',
+  blueDark: 'rgba(1, 23, 47, 1)',
+  green: 'rgba(0, 99, 93, 1)',
+  blueLight: 'rgba(8, 164, 189, 1)',
+  blue: 'rgba(68, 109, 246, 1)'
 }
 
 class App extends Component {
@@ -44,14 +44,14 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    const token = await localStorage.getItem("gh-token")
+    const token = await localStorage.getItem('gh-token')
     this.setState({
       authenticated: !!token || token !== null
     })
   }
 
   login = async cb => {
-    await localStorage.setItem("gh-token", getParameterByName("access_token"))
+    await localStorage.setItem('gh-token', getParameterByName('access_token'))
     this.setState(
       {
         authenticated: true
@@ -61,7 +61,7 @@ class App extends Component {
   }
 
   logout = async cb => {
-    await localStorage.removeItem("gh-token")
+    await localStorage.removeItem('gh-token')
     this.setState(
       {
         authenticated: false
@@ -70,7 +70,7 @@ class App extends Component {
     )
   }
 
-  render() {
+  render () {
     const { authenticated } = this.state
     return (
       <ApolloProvider client={client}>
@@ -88,7 +88,7 @@ class App extends Component {
                   ) : (
                     <Redirect
                       to={{
-                        pathname: "/conferences"
+                        pathname: '/conferences'
                       }}
                     />
                   )
@@ -112,7 +112,7 @@ class App extends Component {
                   ) : (
                     <Redirect
                       to={{
-                        pathname: "/"
+                        pathname: '/'
                       }}
                     />
                   )
@@ -125,7 +125,7 @@ class App extends Component {
     )
   }
 }
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById('root'))
 
 // <Route path="/conferences" component={Conferences} />
 // <Route path="/conference/:id" component={Conference} />
